@@ -12,13 +12,13 @@ namespace modul7_1302204038
         static void Main(string[] args)
         {
             BankTransferConfig bankConfig = new BankTransferConfig();
-            dynamic conf = GetConf(bankConfig);
+            dynamic config = GetConf(bankConfig);
 
-            if (conf.lang == "en")
+            if (config.lang == "en")
             {
                 Console.WriteLine("Please insert the amount of money to transfer:");
             }
-            else if (conf.lang == "id")
+            else if (config.lang == "id")
             {
                 Console.WriteLine("Masukkan jumlah uang yang akan di-transfer:");
             }
@@ -29,20 +29,20 @@ namespace modul7_1302204038
 
             if (uangDiTransfer <= (int)conf.transfer.threshold)
             {
-                biayaTransfer = conf.transfer.low_fee;
+                biayaTransfer = config.transfer.low_fee;
             }
             else
             {
-                biayaTransfer = conf.transfer.high_fee;
+                biayaTransfer = config.transfer.high_fee;
             }
 
-            if (conf.lang == "en")
+            if (config.lang == "en")
             {
                 Console.WriteLine("Transfer fee = " + biayaTransfer);
                 Console.WriteLine("Total amount = " + (biayaTransfer + uangDiTransfer) + "\n");
                 Console.WriteLine("Select transfer method");
             }
-            else if (conf.lang == "id")
+            else if (config.lang == "id")
             {
                 Console.WriteLine("Biaya transfer = " + biayaTransfer);
                 Console.WriteLine("Total biaya = " + (biayaTransfer + uangDiTransfer) + "\n");
@@ -50,7 +50,7 @@ namespace modul7_1302204038
             }
 
             int index = 0;
-            foreach (var mthd in conf.method)
+            foreach (var mthd in config.method)
             {
                 index++;
                 Console.WriteLine(index + ". " + mthd);
@@ -58,13 +58,13 @@ namespace modul7_1302204038
 
             Console.WriteLine();
             string confirm;
-            if (conf.lang == "en")
+            if (config.lang == "en")
             {
-                Console.WriteLine("Please type '" + conf.confirmation.en + "' to confirm the transaction:");
+                Console.WriteLine("Please type '" + config.confirmation.en + "' to confirm the transaction:");
 
                 confirm = Console.ReadLine();
 
-                if (confirm == (string)conf.confirmation.en)
+                if (confirm == (string)config.confirmation.en)
                 {
                     Console.WriteLine("The transfer is completed");
                 }
@@ -73,13 +73,13 @@ namespace modul7_1302204038
                     Console.WriteLine("Transfer is cancelled");
                 }
             }
-            else if (conf.lang == "id")
+            else if (config.lang == "id")
             {
-                Console.WriteLine("Ketik '" + conf.confirmation.id + "' untuk mengkonfirmasi transaksi:");
+                Console.WriteLine("Ketik '" + config.confirmation.id + "' untuk mengkonfirmasi transaksi:");
 
                 confirm = Console.ReadLine();
 
-                if (confirm == (string)conf.confirmation.id)
+                if (confirm == (string)config.confirmation.id)
                 {
                     Console.WriteLine("Proses transfer berhasil");
                 }
